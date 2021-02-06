@@ -12,11 +12,11 @@ const connection = mysql.createConnection({
 
     // Your password
     password: 'W@rmVa3i11a',
-    database: 'boston',
+    database: 'DMScrantonEmployeeTrackerDB',
 });
 
 const readEmployee_Role = () => {
-    connection.query('SELECT name FROM Employee_Role', (err, res) => {
+    connection.query('SELECT title FROM Employee_Role', (err, res) => {
         if (err) throw err;
 
         // Log all results of the SELECT statement
