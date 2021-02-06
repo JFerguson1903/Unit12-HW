@@ -14,7 +14,7 @@ VALUES ("Sales"),
 
 INSERT INTO Employee_Role (title, salary, department_id)
 VALUES ("Regional Manager", "45,000", 1), 
-("Assistant to the Regional Manager", "55,000", 1), 
+("Asst to the Regional Manager", "55,000", 1), 
 ("Sales Rep", "50,000", 1);
 ("Senior Accountant", "45,000", 2),
 ("Accountant", "38,000", 2),
