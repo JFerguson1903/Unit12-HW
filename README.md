@@ -6,7 +6,7 @@
 
 ## Description
 
-I was given the assignment through Triliogy/WASHU Coding Bootcamp to "architect and build a solution for managing a company's employees using node, inquirer, and MySQL". The user story was that, "As a business owner I want to be able to view and manage the departments, roles, and employees in my company So that I can organize and plan my business".
+I was given the assignment through Triliogy/WASHU Coding Bootcamp to "architect and build a solution for managing a company's employees using node, inquirer, and MySQL". The user story was that, "As a business owner I want to be able to view and manage the departments, roles, and employees in my company So that I can organize and plan my business".  I have used the American version of "The Office" as my source of ```seed.sql``` data.
 
 ## Table of Contents
 
@@ -27,7 +27,7 @@ I was given the assignment through Triliogy/WASHU Coding Bootcamp to "architect 
 
 The demo is avaliable [here](https://jferguson1903.github.io/Unit8-HW/Images/TeamSample.mp4).
  -->
- 
+
 ## Credits
 
 * Starter code and project idea provided by © 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
