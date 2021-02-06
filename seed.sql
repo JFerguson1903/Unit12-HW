@@ -13,18 +13,18 @@ VALUES ("Sales"),
 ("Customer Service");
 
 INSERT INTO Employee_Role (title, salary, department_id)
-VALUES ("Regional Manager", "45,000", 1), 
-("Asst to the Regional Manager", "55,000", 1), 
-("Sales Rep", "50,000", 1);
-("Senior Accountant", "45,000", 2),
-("Accountant", "38,000", 2),
-("Warehouse Foreman", "40,000", 3),
-("Warehouse", "32,000", 3),
-("Quality Assurance Rep", "31,723", 4),
-("Supplier Relations", "34,000", 5),
-("Human Resources", "31,500", 6),
-("Receptionist", "32,000", 7),
-("Customer Service Rep", "34,000", 8);
+VALUES ("Regional Manager", 45000, 1), 
+("Asst to the Regional Manager", 55000, 1), 
+("Sales Rep", 50000, 1),
+("Senior Accountant", 45000, 2),
+("Accountant", 38000, 2),
+("Warehouse Foreman", 40000, 3),
+("Warehouse", 32000, 3),
+("Quality Assurance Rep", 31723, 4),
+("Supplier Relations", 34000, 5),
+("Human Resources", 31500, 6),
+("Receptionist", 32000, 7),
+("Customer Service Rep", 34000, 8);
 
 
 INSERT INTO Employee (first_name, last_name, role_id, manager_id)
