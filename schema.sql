@@ -1,9 +1,9 @@
 /* Schema for SQL database/table */
-DROP DATABASE IF EXISTS EmployeeTrackerDB;
-CREATE database EmployeeTrackerDB;
+DROP DATABASE IF EXISTS DMScrantonEmployeeTrackerDB;
+CREATE database DMScrantonEmployeeTrackerDB;
 
 /* Create database */
-USE EmployeeTrackerDB;
+USE DMScrantonEmployeeTrackerDB;
 
 /* Create new table for department */
 CREATE TABLE Department (
