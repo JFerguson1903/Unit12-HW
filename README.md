@@ -27,6 +27,7 @@ I was given the assignment through Triliogy/WASHU Coding Bootcamp to "architect 
 
 The demo is avaliable [here](https://jferguson1903.github.io/Unit8-HW/Images/TeamSample.mp4).
  -->
+ 
 ## Credits
 
 * Starter code and project idea provided by © 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
