@@ -1,4 +1,6 @@
 const mysql = require('mysql');
+const inquirer = require('inquirer');
+const cTable = require('console.table');
 
 // the connection information for the sql database
 const connection = mysql.createConnection({
@@ -20,7 +22,7 @@ const readEmployee_Role = () => {
         if (err) throw err;
 
         // Log all results of the SELECT statement
-        console.log(res);
+        console.table(res);
         connection.end();
     });
 };
