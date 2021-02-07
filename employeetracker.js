@@ -49,14 +49,15 @@ const viewData = (dbTable) => {
 
 // Callback Function for Returning Departments
 const returnDepartments = (callback) => {
-    connection.query('SELECT department_name FROM Department', (err, res) => {
+    connection.query('SELECT id, department_name FROM Department', (err, res) => {
         if (err) throw err;
 
         let departments = [];
         res.forEach(myFunction);
 
         function myFunction(item, index) {
-            departments.push(item.department_name);
+            let departmentOptions = { value: item.id, name: item.department_name };
+            departments.push(departmentOptions);
         }
 
         return callback(departments);
@@ -99,15 +100,12 @@ const addRole = () => {
             message: "What department does the role belong to?",
             choices: result
         }]).then(function(data) {
-
-            /*         connection.query(`INSERT INTO Department (department_name) VALUES ("${data.newDepartment}")`, (err, res) => {
-                        if (err) throw err;
-                        console.log(`${data.newDepartment} has been added!`);
-                        whatToDo();
-                    });
-             */
+            connection.query(`INSERT INTO Employee_Role (title, salary, department_id) VALUES ("${data.newRoleTitle}", ${data.newRoleSalary}, ${data.newRoleDepartment})`, (err, res) => {
+                if (err) throw err;
+                console.log(`${data.newRoleTitle} has been added!`);
+                whatToDo();
+            });
         });
-
     });
 };
 
