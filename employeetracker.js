@@ -47,7 +47,7 @@ const viewData = (dbTable) => {
     });
 }
 
-// Callback Function for Returning Departments
+// Callback Function for Returning Departments from DB
 const returnDepartments = (callback) => {
     connection.query('SELECT id, department_name FROM Department', (err, res) => {
         if (err) throw err;
@@ -61,6 +61,23 @@ const returnDepartments = (callback) => {
         }
 
         return callback(departments);
+    });
+};
+
+// Callback Function for Returning Employee_Role from DB
+const returnEmployees = (callback) => {
+    connection.query('SELECT id, title FROM Employee_Role', (err, res) => {
+        if (err) throw err;
+
+        let roles = [];
+        res.forEach(myFunction);
+
+        function myFunction(item, index) {
+            let roleOptions = { value: item.id, name: item.title };
+            roles.push(roleOptions);
+        }
+
+        return callback(roles);
     });
 };
 
@@ -103,6 +120,39 @@ const addRole = () => {
             connection.query(`INSERT INTO Employee_Role (title, salary, department_id) VALUES ("${data.newRoleTitle}", ${data.newRoleSalary}, ${data.newRoleDepartment})`, (err, res) => {
                 if (err) throw err;
                 console.log(`${data.newRoleTitle} has been added!`);
+                whatToDo();
+            });
+        });
+    });
+};
+
+// Add new employee to DB
+const addEmployee = () => {
+
+    returnEmployees(function(result) {
+
+        inquirer.prompt([{
+            type: "input",
+            name: "newEmployeeFirstName",
+            message: "What is the new employees first name?",
+        }, {
+            type: "input",
+            name: "newEmployeeLastName",
+            message: "What is the new employees Last name?",
+        }, {
+            type: "list",
+            name: "newEmployeeRole",
+            message: "What role will the new employee be in?",
+            choices: result
+        }, {
+            type: "list",
+            name: "newEmployeeManager",
+            message: "What role will the new employee report to?",
+            choices: result
+        }]).then(function(data) {
+            connection.query(`INSERT INTO Employee (first_name, last_name, role_id, manager_id) VALUES ("${data.newEmployeeFirstName}", "${data.newEmployeeLastName}", ${data.newEmployeeRole}, ${data.newEmployeeManager})`, (err, res) => {
+                if (err) throw err;
+                console.log(`${data.newEmployeeFirstName} ${data.newEmployeeLastName} has been added!`);
                 whatToDo();
             });
         });
