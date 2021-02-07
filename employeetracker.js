@@ -65,7 +65,7 @@ const returnDepartments = (callback) => {
 };
 
 // Callback Function for Returning Employee_Role from DB
-const returnEmployees = (callback) => {
+const returnEmployeeRoles = (callback) => {
     connection.query('SELECT id, title FROM Employee_Role', (err, res) => {
         if (err) throw err;
 
@@ -78,6 +78,23 @@ const returnEmployees = (callback) => {
         }
 
         return callback(roles);
+    });
+};
+
+// Callback Function for Returning Employees from DB
+const returnEmployees = (callback) => {
+    connection.query('SELECT id, first_name, last_name FROM Employee', (err, res) => {
+        if (err) throw err;
+
+        let employeeName = [];
+        res.forEach(myFunction);
+
+        function myFunction(item, index) {
+            let employeeNameOptions = { value: item.id, name: `${item.first_name} ${item.last_name}` };
+            employeeName.push(employeeNameOptions);
+        }
+
+        return callback(employeeName);
     });
 };
 
@@ -129,7 +146,7 @@ const addRole = () => {
 // Add new employee to DB
 const addEmployee = () => {
 
-    returnEmployees(function(result) {
+    returnEmployeeRoles(function(result) {
 
         inquirer.prompt([{
             type: "input",
@@ -159,6 +176,41 @@ const addEmployee = () => {
     });
 };
 
+// Change an employees role
+const changeRole = () => {
+
+    returnEmployees(function(result) {
+
+        inquirer.prompt([{
+            type: "list",
+            name: "updateEmployeeName",
+            message: "Who do you need to update?",
+            choices: result
+        }]).then(function(data) {
+
+            let employeeToBeUpdated = data.updateEmployeeName;
+            returnEmployeeRoles(function(result) {
+
+                inquirer.prompt([{
+                    type: "list",
+                    name: "updatedEmployeeRole",
+                    message: "What is the employees updated role?",
+                    choices: result
+                }]).then(function(data) {
+                    console.log(employeeToBeUpdated);
+                    connection.query(`UPDATE Employee SET role_id = ${data.updatedEmployeeRole} WHERE id = ${employeeToBeUpdated}`, (err, res) => {
+                        if (err) throw err;
+                        console.log(`Your employee has been updated!`);
+                        whatToDo();
+                    });
+
+                });
+            });
+
+        });
+    });
+};
+
 const whatToDo = () => {
     inquirer.prompt({
         type: "list",
@@ -171,6 +223,7 @@ const whatToDo = () => {
             "Add Department",
             "Add Role",
             "Add Employee",
+            "Change an Employees Role",
             "Quit"
         ]
     }).then(function(data) {
@@ -194,6 +247,9 @@ const whatToDo = () => {
                 break;
             case 'Add Employee':
                 addEmployee();
+                break;
+            case 'Change an Employees Role':
+                changeRole();
                 break;
             case 'Quit':
                 connection.end();
