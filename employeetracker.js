@@ -56,10 +56,9 @@ const addDepartment = () => {
     }).then(function(data) {
         console.log(data.newDepartment);
 
-        connection.query('SELECT * FROM Department', (err, res) => {
+        connection.query(`INSERT INTO Department (department_name) VALUES ("${data.newDepartment}")`, (err, res) => {
             if (err) throw err;
-
-            console.log("Update DB Here");
+            console.log(`${data.newDepartment} has been added!`);
             whatToDo();
         });
     });
@@ -75,6 +74,8 @@ const whatToDo = () => {
             "View All Roles",
             "View All Employees",
             "Add Department",
+            "Add Role",
+            "Add Employee",
             "Quit"
         ]
     }).then(function(data) {
@@ -92,6 +93,12 @@ const whatToDo = () => {
                 break;
             case 'Add Department':
                 addDepartment();
+                break;
+            case 'Add Role':
+                addRole();
+                break;
+            case 'Add Employee':
+                addEmployee();
                 break;
             case 'Quit':
                 connection.end();
