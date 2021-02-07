@@ -47,7 +47,23 @@ const viewData = (dbTable) => {
     });
 }
 
-// Add DB Info
+// Callback Function for Returning Departments
+const returnDepartments = (callback) => {
+    connection.query('SELECT department_name FROM Department', (err, res) => {
+        if (err) throw err;
+
+        let departments = [];
+        res.forEach(myFunction);
+
+        function myFunction(item, index) {
+            departments.push(item.department_name);
+        }
+
+        return callback(departments);
+    });
+};
+
+// Add new department to DB
 const addDepartment = () => {
     inquirer.prompt({
         type: "input",
@@ -61,6 +77,37 @@ const addDepartment = () => {
             console.log(`${data.newDepartment} has been added!`);
             whatToDo();
         });
+    });
+};
+
+// Add new role to DB
+const addRole = () => {
+
+    returnDepartments(function(result) {
+
+        inquirer.prompt([{
+            type: "input",
+            name: "newRoleTitle",
+            message: "What is the title of the new role?",
+        }, {
+            type: "input",
+            name: "newRoleSalary",
+            message: "What is the salary of the new role?",
+        }, {
+            type: "list",
+            name: "newRoleDepartment",
+            message: "What department does the role belong to?",
+            choices: result
+        }]).then(function(data) {
+
+            /*         connection.query(`INSERT INTO Department (department_name) VALUES ("${data.newDepartment}")`, (err, res) => {
+                        if (err) throw err;
+                        console.log(`${data.newDepartment} has been added!`);
+                        whatToDo();
+                    });
+             */
+        });
+
     });
 };
 
