@@ -1,6 +1,25 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
+var figlet = require('figlet');
+
+// Prints ASCII Banner
+const loadBanner = () => {
+    figlet.text('scranton employee tracker', {
+        font: 'Roman',
+        horizontalLayout: 'default',
+        verticalLayout: 'default',
+        width: 90,
+        whitespaceBreak: true
+    }, function(err, data) {
+        if (err) {
+            console.log('Something went wrong...');
+            console.dir(err);
+            return;
+        }
+        console.log(data);
+    });
+}
 
 // the connection information for the sql database
 const connection = mysql.createConnection({
@@ -26,6 +45,8 @@ const readEmployee_Role = () => {
         connection.end();
     });
 };
+
+loadBanner();
 
 connection.connect((err) => {
     if (err) throw err;
