@@ -36,7 +36,7 @@ const connection = mysql.createConnection({
     database: 'DMScrantonEmployeeTrackerDB',
 });
 
-// View DB Info
+// View Department DB Info
 const viewData = (dbTable) => {
     connection.query(`SELECT * FROM ${dbTable}`, (err, res) => {
         if (err) throw err;
@@ -46,6 +46,19 @@ const viewData = (dbTable) => {
         whatToDo();
     });
 }
+
+// View Employee_Role DB filtered Info
+const viewRoles = () => {
+    connection.query(`SELECT employee_role.id, employee_role.title, employee_role.salary, department.department_name 
+    FROM department INNER JOIN employee_role ON department.id=employee_role.department_id`, (err, res) => {
+        if (err) throw err;
+
+        // Log all results of the SELECT statement
+        console.table(res);
+        whatToDo();
+    });
+}
+
 
 // Callback Function for Returning Departments from DB
 const returnDepartments = (callback) => {
@@ -234,7 +247,7 @@ const whatToDo = () => {
                 viewData('Department');
                 break;
             case 'View All Roles':
-                viewData('Employee_Role');
+                viewRoles();
                 break;
             case 'View All Employees':
                 viewData('Employee');
