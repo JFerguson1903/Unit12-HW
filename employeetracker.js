@@ -18,6 +18,7 @@ const loadBanner = () => {
             return;
         }
         console.log(data);
+        whatToDo();
     });
 }
 
@@ -234,6 +235,7 @@ const changeRole = () => {
 
 // whatToDo funtion giving the options to user
 const whatToDo = () => {
+
     inquirer.prompt({
         type: "list",
         name: "todo",
@@ -280,9 +282,8 @@ const whatToDo = () => {
 }
 
 
-// Calling functions
+// Calling loanBanner function
 loadBanner();
-whatToDo();
 
 // Error handling for SQL connection
 connection.connect((err) => {
