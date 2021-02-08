@@ -130,7 +130,6 @@ const addDepartment = () => {
         name: "newDepartment",
         message: "Department Name?",
     }).then(function(data) {
-        console.log(data.newDepartment);
 
         connection.query(`INSERT INTO Department (department_name) VALUES ("${data.newDepartment}")`, (err, res) => {
             if (err) throw err;
@@ -222,20 +221,18 @@ const changeRole = () => {
                     message: "What is the employees updated role?",
                     choices: result
                 }]).then(function(data) {
-                    console.log(employeeToBeUpdated);
                     connection.query(`UPDATE Employee SET role_id = ${data.updatedEmployeeRole} WHERE id = ${employeeToBeUpdated}`, (err, res) => {
                         if (err) throw err;
                         console.log(`Your employee has been updated!`);
                         whatToDo();
                     });
-
                 });
             });
-
         });
     });
 };
 
+// whatToDo funtion giving the options to user
 const whatToDo = () => {
     inquirer.prompt({
         type: "list",
@@ -252,7 +249,6 @@ const whatToDo = () => {
             "Quit"
         ]
     }).then(function(data) {
-        console.log(data.todo);
 
         switch (data.todo) {
             case 'View All Departments':
@@ -283,10 +279,12 @@ const whatToDo = () => {
     });
 }
 
-//loadBanner();
+
+// Calling functions
+loadBanner();
 whatToDo();
 
+// Error handling for SQL connection
 connection.connect((err) => {
     if (err) throw err;
-    //console.log(`connected as id ${connection.threadId}\n`);
 });
