@@ -59,6 +59,18 @@ const viewRoles = () => {
     });
 }
 
+// View Employee DB filtered Info
+const viewEmployees = () => {
+    connection.query(`SELECT employee.id, employee.first_name, employee.last_name, employee_role.title, employee.manager_id 
+    FROM employee INNER JOIN employee_role ON employee.role_id=employee_role.id`, (err, res) => {
+        if (err) throw err;
+
+        // Log all results of the SELECT statement
+        console.table(res);
+        whatToDo();
+    });
+}
+
 
 // Callback Function for Returning Departments from DB
 const returnDepartments = (callback) => {
@@ -250,7 +262,7 @@ const whatToDo = () => {
                 viewRoles();
                 break;
             case 'View All Employees':
-                viewData('Employee');
+                viewEmployees();
                 break;
             case 'Add Department':
                 addDepartment();
