@@ -26,7 +26,7 @@ I was given the assignment through Triliogy/WASHU Coding Bootcamp to "architect 
 
 Once you have ran the installation above and everything has successfully installed, run ```node employeetracker.js``` in the terminal. Move through each prompt as desired.
 
-The demo is avaliable [here](https://jferguson1903.github.io/Unit8-HW/Images/TeamSample.mp4).
+The demo is avaliable [here](https://drive.google.com/file/d/1ZUDNIlmicg93pkEbxCaouhxpDHFVMWH5/view?usp=sharing).
 
 ## Credits
 
